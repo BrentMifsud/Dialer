@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     private static var colors: [Color] = [
-        Color("GradientTopColor"), Color("GradientBottomColor")
+        Color("GradientTopColor"), Color("GradientMiddleColor"), Color("GradientBottomColor")
     ]
     
     @State private var dialedNumbers: String = ""
