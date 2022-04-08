@@ -19,12 +19,12 @@ enum DialerButtons: String, Identifiable, CaseIterable {
     case seven = "7"
     case eight = "8"
     case nine = "9"
-    case pound = "#"
-    case zero = "0"
     case asterisk = "*"
+    case zero = "0"
+    case pound = "#"
 
     static var allCases: [DialerButtons] = [
-        .one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .pound, .zero, .asterisk
+        .one, .two, .three, .four, .five, .six, .seven, .eight, .nine, .asterisk, .zero, .pound
     ]
 }
 
@@ -49,9 +49,7 @@ struct DialerView: View {
                             .fill(Color.white)
                             .frame(width: 60, height: 60)
                             .overlay(
-                                Text(dialerButton.rawValue)
-                                    .font(.largeTitle)
-                                    .foregroundColor(.black),
+                                getButton(for: dialerButton),
                                 alignment: .center
                             )
                     }
@@ -76,6 +74,23 @@ struct DialerView: View {
                         .foregroundColor(.white)
                 }
             }
+        }
+    }
+    
+    @ViewBuilder private func getButton(for dialerButton: DialerButtons) -> some View {
+        if dialerButton == .asterisk {
+            Image(systemName: "asterisk")
+                .resizable()
+                .renderingMode(.template)
+                .aspectRatio(contentMode: .fit)
+                .font(Font.largeTitle.bold())
+                .foregroundColor(.black)
+                .padding()
+        } else {
+            Text(dialerButton.rawValue)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(.black)
         }
     }
 }
